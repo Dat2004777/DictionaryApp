@@ -14,8 +14,9 @@ public class Main {
         
         do {
             System.out.println("\n===== MENU =====");
-            System.out.println("1. Thêm từ");
-            System.out.println("2. Tìm từ");
+            System.out.println("1. Hiện thị danh sách từ điển.");
+            System.out.println("2. Thêm từ");
+            System.out.println("3. Tìm từ");
             System.out.println("0. Thoát");
             System.out.print("Lựa chọn: ");
             
@@ -30,6 +31,9 @@ public class Main {
             
             switch(choice) {
                 case 1:
+                    service.displayAllWords();
+                    break;
+                case 2:
                     System.out.print("Nhập từ: ");
                     String addWord = sc.nextLine();
                     System.out.print("Nhập nghĩa: ");
@@ -37,7 +41,7 @@ public class Main {
                     
                     service.addWord(addWord, addMeaning);
                     break;
-                case 2:
+                case 3:
                     System.out.println("Nhập từ cần tìm: ");
                     String findWord = sc.nextLine();
                     String resultOfFindWord = service.findWord(findWord);

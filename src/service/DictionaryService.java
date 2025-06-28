@@ -5,35 +5,47 @@ import java.util.HashMap;
 import model.WordEntry;
 
 public class DictionaryService {
-    private HashMap<String, String> dictionary = new HashMap<String, String>();
+    private HashMap<String, WordEntry> dictionary = new HashMap<String, WordEntry>();
+    
+    private String capitalizeFirstLetter(String word) {
+        if (word == null || word.trim().isEmpty()) return word;
+        return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
+    }
     
     public boolean addWord(String word, String meaning) {
-        try {
-            if (word == null || meaning == null || word.isEmpty() || meaning.isEmpty()) {
-                throw new IllegalArgumentException("Từ và nghĩa không được để trống.");
-            }
-            String wordTmpCheck = word;
-            word = word.toLowerCase();
-            
-            if (dictionary.containsKey(word)) {
-                throw new IllegalStateException("Từ '" + wordTmpCheck + "' đã tồn tại.");
-            }
-            
-            dictionary.put(word, meaning);
-            
-            return true;
-        } catch (IllegalArgumentException e) {
-            System.out.println("Lỗi nhập: " + e.getMessage());
-        } catch (IllegalStateException e) {
-            System.out.println("Lỗi " + e.getMessage());
+        if (word == null || meaning == null || word.trim().isEmpty() || meaning.trim().isEmpty()) {
+            System.out.println("Từ và nghĩa không được để trống");
+            return false;
         }
         
-        return false;
+        String originalWord = capitalizeFirstLetter(word.trim());
+        String key = originalWord.toLowerCase();
+        
+        if (dictionary.containsKey(key)) {
+            System.out.println("Từ '" + originalWord + "' đã tồn tại trong từ điển.");
+            return false;
+        }
+        
+        WordEntry entry = new WordEntry(originalWord, meaning.trim());
+        dictionary.put(key, entry);
+        System.out.println("Đã thêm từ: " + originalWord);
+        return true;
     }
 
     public String findWord(String word) {
-        return dictionary.get(word.toLowerCase()); // !have => return null
+        String key = word.trim().toLowerCase();
+        WordEntry entry = dictionary.get(key);
+        if (entry == null) return null;
+        return entry.getMeaning();
     }
 
+    public void displayAllWords() {
+        int i = 1;
+        System.out.println("Danh sách từ điển:");
+        for (WordEntry entry : dictionary.values()) {
+            System.out.println(i + ". " + entry.getWord() + " → " + entry.getMeaning());
+            i++;
+        }
+    }
 }
 
