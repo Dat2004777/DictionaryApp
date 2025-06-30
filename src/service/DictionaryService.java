@@ -1,6 +1,7 @@
 
 package service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import model.WordEntry;
 
@@ -28,7 +29,6 @@ public class DictionaryService {
         
         WordEntry entry = new WordEntry(originalWord, meaning.trim());
         dictionary.put(key, entry);
-        System.out.println("Đã thêm từ: " + originalWord);
         return true;
     }
 
@@ -40,12 +40,14 @@ public class DictionaryService {
     }
 
     public void displayAllWords() {
-        int i = 1;
         System.out.println("Danh sách từ điển:");
         for (WordEntry entry : dictionary.values()) {
-            System.out.println(i + ". " + entry.getWord() + " → " + entry.getMeaning());
-            i++;
+            System.out.println(entry.getWord() + " → " + entry.getMeaning());
         }
+    }
+    
+    public Collection<WordEntry> getAllEntries() {
+        return dictionary.values();
     }
 }
 

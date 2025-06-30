@@ -1,14 +1,22 @@
 
+import java.io.IOException;
 import java.util.Scanner;
 import service.DictionaryService;
+import service.SpellingService;
+import storage.DictionaryStorage;
 
 
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
         DictionaryService service = new DictionaryService();
+        DictionaryStorage storage = new DictionaryStorage(service);
+        SpellingService spell = new SpellingService();
+        
+        storage.loadFormFile();
+        
         Scanner sc = new Scanner(System.in);
         int choice = -1;
         
@@ -40,6 +48,8 @@ public class Main {
                     String addMeaning = sc.nextLine();
                     
                     service.addWord(addWord, addMeaning);
+                    
+                    System.out.println("Đã thêm từ: " + addWord);
                     break;
                 case 3:
                     System.out.println("Nhập từ cần tìm: ");
@@ -61,7 +71,7 @@ public class Main {
             }
         } while (choice != 0);
         
-        
+        storage.saveToFile();
         sc.close();
     }
 
