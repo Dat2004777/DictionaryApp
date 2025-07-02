@@ -16,7 +16,7 @@ public class Main {
         SpellingService spell = new SpellingService();
         
         storage.loadFormFile();
-        
+                
         Scanner sc = new Scanner(System.in);
         int choice = -1;
         
@@ -25,6 +25,7 @@ public class Main {
             System.out.println("1. Hiện thị danh sách từ điển.");
             System.out.println("2. Thêm từ");
             System.out.println("3. Tìm từ");
+            System.out.println("4. Đánh vần");
             System.out.println("0. Thoát");
             System.out.print("Lựa chọn: ");
             
@@ -46,8 +47,10 @@ public class Main {
                     String addWord = sc.nextLine();
                     System.out.print("Nhập nghĩa: ");
                     String addMeaning = sc.nextLine();
+                    System.out.print("Nhập Loại từ 'adj/ verb/ noun': ");
+                    String addType = sc.nextLine();
                     
-                    service.addWord(addWord, addMeaning);
+                    service.addWord(addWord, addMeaning, addType);
                     
                     System.out.println("Đã thêm từ: " + addWord);
                     break;
@@ -57,10 +60,16 @@ public class Main {
                     String resultOfFindWord = service.findWord(findWord);
                     
                     if (resultOfFindWord != null) {
-                        System.out.println("Nghĩa của " + findWord + ": " + resultOfFindWord);
+                        System.out.println(resultOfFindWord);
                     } else {
                         System.out.println("Không tìm thấy từ '" +  findWord + "'.");
                     }
+                    break;
+                case 4:
+                    System.out.println("Nhập từ: ");
+                    String spellWord = sc.nextLine();
+                    
+                    System.out.println(spell.spellWord(spellWord));;
                     break;
                 case 0:
                     System.out.println("Thoát từ điển.");

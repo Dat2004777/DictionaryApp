@@ -22,7 +22,8 @@ public class DictionaryStorage {
             String[] info = line.split("[|]");
             String word = info[0].trim();
             String meaning = info[1].trim();
-            service.addWord(word, meaning);
+            String type = info[2].trim();
+            service.addWord(word, meaning, type);
         }
         
         br.close();
@@ -35,7 +36,8 @@ public class DictionaryStorage {
         BufferedWriter bw = new BufferedWriter(fw);
         
         for (WordEntry entry : service.getAllEntries()) {
-            bw.write(entry.getWord() + "|" + entry.getMeaning());
+            String type = entry.getClass().getSimpleName().replace("WordEntry", "").toLowerCase(); 
+            bw.write(entry.getWord() + "|" + entry.getMeaning() + "|" + type);
             bw.newLine();
         }
         

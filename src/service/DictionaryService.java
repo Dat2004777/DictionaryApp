@@ -3,6 +3,9 @@ package service;
 
 import java.util.Collection;
 import java.util.HashMap;
+import model.AdjWordEntry;
+import model.NounWordEntry;
+import model.VerbWordEntry;
 import model.WordEntry;
 
 public class DictionaryService {
@@ -13,7 +16,7 @@ public class DictionaryService {
         return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
     }
     
-    public boolean addWord(String word, String meaning) {
+    public boolean addWord(String word, String meaning, String type) {
         if (word == null || meaning == null || word.trim().isEmpty() || meaning.trim().isEmpty()) {
             System.out.println("Từ và nghĩa không được để trống");
             return false;
@@ -27,7 +30,21 @@ public class DictionaryService {
             return false;
         }
         
-        WordEntry entry = new WordEntry(originalWord, meaning.trim());
+        WordEntry entry;
+        switch (type.toLowerCase()) {
+            case "adj":
+                entry = new AdjWordEntry(originalWord, meaning.trim());
+                break;
+            case "verb":
+                entry = new VerbWordEntry(originalWord, meaning.trim());
+                break;
+            case "noun":
+                entry = new NounWordEntry(originalWord, meaning.trim());
+                break;
+            default:
+                System.out.println("Loại từ không hợp lệ. Vui lòng nhập adj / verb / noun.");
+                return false;
+        }
         dictionary.put(key, entry);
         return true;
     }
@@ -36,13 +53,16 @@ public class DictionaryService {
         String key = word.trim().toLowerCase();
         WordEntry entry = dictionary.get(key);
         if (entry == null) return null;
-        return entry.getMeaning();
+        return entry.getFormatted();
     }
 
     public void displayAllWords() {
         System.out.println("Danh sách từ điển:");
+        int count = 0;
         for (WordEntry entry : dictionary.values()) {
-            System.out.println(entry.getWord() + " → " + entry.getMeaning());
+            System.out.println(entry.getFormatted());
+            count++;
+            if (count >= 5) break;
         }
     }
     

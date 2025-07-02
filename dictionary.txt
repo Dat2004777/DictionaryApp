@@ -1,2 +1,3 @@
-Banana|qua chuoi
-Apple|qua tao
+Black|da den|adj
+Drive|lai xe|verb
+House|ngoi nha|noun

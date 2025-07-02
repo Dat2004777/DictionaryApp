@@ -2,7 +2,7 @@
 package model;
 
 
-public class WordEntry {
+public abstract class WordEntry {
     private String word;
     private String meaning;
     
@@ -27,6 +27,8 @@ public class WordEntry {
         return meaning;
     }
 
+    public abstract String getFormatted();
+    
     @Override
     public String toString() {
         return word + ": " + meaning;
