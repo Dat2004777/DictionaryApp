@@ -34,4 +34,5 @@ public abstract class WordEntry {
         return word + ": " + meaning;
     }
     
+    
 }

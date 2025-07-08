@@ -16,4 +16,6 @@ public class SpellingService {
         
         return String.join("-", word.toUpperCase().split(""));
     }
+    
+    
 }

@@ -2,6 +2,7 @@
 import java.io.IOException;
 import java.util.Scanner;
 import service.DictionaryService;
+import service.UpdateService;
 import service.RemoveService;
 import service.SpellingService;
 import storage.DictionaryStorage;
@@ -16,7 +17,7 @@ public class Main {
         DictionaryStorage storage = new DictionaryStorage(service);
         SpellingService spell = new SpellingService(service);
         RemoveService remove = new RemoveService(service);
-        
+        UpdateService update = new UpdateService(service);
         storage.loadFormFile();
                 
         Scanner sc = new Scanner(System.in);
@@ -25,11 +26,12 @@ public class Main {
         do {
             System.out.println("\n===== MENU =====");
             System.out.println("1. Hiện thị danh sách từ điển.");
-            System.out.println("2. Thêm từ");
-            System.out.println("3. Tìm từ");
-            System.out.println("4. Xóa từ");
-            System.out.println("5. Xóa toàn bộ từ điển");
-            System.out.println("6. Đánh vần");
+            System.out.println("2. Cập nhật nghĩa của từ");
+            System.out.println("3. Thêm từ");
+            System.out.println("4. Tìm từ");
+            System.out.println("5. Xóa từ");
+            System.out.println("6. Xóa toàn bộ từ điển");
+            System.out.println("7. Đánh vần");
             System.out.println("0. Thoát");
             System.out.print("Lựa chọn: ");
             
@@ -48,6 +50,20 @@ public class Main {
                     
                     break;
                 case 2:
+                    System.out.print("Nhập từ cần cập nhật nghĩa: ");
+                    String updateWord = sc.nextLine();
+                    
+                    System.out.print("Nhập nghĩa mới: ");
+                    String newMeaning = sc.nextLine();
+                    
+                    if (update.updateMeaing(updateWord, newMeaning)) {
+                        System.out.println("Đã cập nhật nghĩa của từ '" + updateWord + "'.");
+                    }
+                    
+                    storage.saveToFile();
+                    
+                    break;
+                case 3:
                     System.out.print("Nhập từ: ");
                     String addWord = sc.nextLine();
                     
@@ -62,7 +78,7 @@ public class Main {
                     }
 
                     break;
-                case 3:
+                case 4:
                     System.out.println("Nhập từ cần tìm: ");
                     String findWord = sc.nextLine();
                     
@@ -75,7 +91,7 @@ public class Main {
                     }
                     
                     break;
-                case 4:
+                case 5:
                     String removeWord = sc.nextLine();
                     
                     remove.removeWord(removeWord);
@@ -83,7 +99,7 @@ public class Main {
                     storage.saveToFile();
                     
                     break;   
-                case 5:
+                case 6:
                     System.out.print("Bạn có chắc chắn muốn xóa toàn bộ từ điển không? (yes/no): ");
                     String confirm = sc.nextLine().trim().toLowerCase();
                     
@@ -96,7 +112,7 @@ public class Main {
                     storage.saveToFile();
                     
                     break; 
-                case 6:
+                case 7:
                     System.out.println("Nhập từ: ");
                     String spellWord = sc.nextLine();
                     

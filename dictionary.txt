@@ -1,2 +1,3 @@
-Banana|qua chuoi|noun
+Apple|qua tao|noun
+Drive|lai xe|verb
 House|ngoi nha|noun

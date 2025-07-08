@@ -10,7 +10,7 @@ import model.VerbWordEntry;
 import model.WordEntry;
 
 public class DictionaryService {
-    private HashMap<String, WordEntry> dictionary = new HashMap<String, WordEntry>();
+    private HashMap<String, WordEntry> dictionary = new HashMap<>();
     
     public Map<String, WordEntry> getDictionary() {
         return dictionary;
