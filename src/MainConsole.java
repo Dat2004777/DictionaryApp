@@ -1,4 +1,6 @@
+import javax.swing.SwingUtilities;
 
+import gui.DictionaryUI;
 import java.io.IOException;
 import java.util.Scanner;
 import service.DictionaryService;
@@ -9,7 +11,7 @@ import storage.DictionaryStorage;
 
 
 
-public class Main {
+public class MainConsole {
 
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
@@ -133,5 +135,6 @@ public class Main {
         sc.close();
     }
 
+    
 }
 

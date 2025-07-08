@@ -1,3 +1,8 @@
-Apple|qua tao|noun
-Drive|lai xe|verb
-House|ngoi nha|noun
+Area|Khu vực|noun
+Apple|quả táo|noun
+Pink|Màu Hồng|adj
+Barrier|Rào chắn|noun
+Black|Màu đen|adj
+Drive|lái xe|verb
+House|Ngôi nhà|noun
+Apple pine|Quả lê|noun
