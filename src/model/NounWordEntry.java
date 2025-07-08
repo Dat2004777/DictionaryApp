@@ -3,8 +3,6 @@ package model;
 
 
 public class NounWordEntry extends WordEntry {
-    private String noun;
-
     public NounWordEntry(String word, String meaning) {
         super(word, meaning);
     }

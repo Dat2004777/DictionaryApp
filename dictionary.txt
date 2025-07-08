@@ -1,3 +1,2 @@
-Black|da den|adj
-Drive|lai xe|verb
+Banana|qua chuoi|noun
 House|ngoi nha|noun

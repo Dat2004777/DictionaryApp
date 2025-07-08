@@ -3,8 +3,6 @@ package model;
 
 
 public class AdjWordEntry extends WordEntry {
-    private String adj;
-
     public AdjWordEntry(String word, String meaning) {
         super(word, meaning);
     }
