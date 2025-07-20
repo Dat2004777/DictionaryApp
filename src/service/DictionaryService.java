@@ -65,11 +65,8 @@ public class DictionaryService {
 
     public void displayWords() {
         System.out.println("Danh sách từ điển:");
-        int count = 0;
         for (WordEntry entry : dictionary.values()) {
             System.out.println(entry.getFormatted());
-            count++;
-            if (count >= 5) break;
         }
     }
     

@@ -1,8 +1,5 @@
-Area|Khu vực|noun
-Apple|quả táo|noun
-Pink|Màu Hồng|adj
-Barrier|Rào chắn|noun
+Banana|Quả chuối|noun
+Apple|Quả táo|noun
 Black|Màu đen|adj
-Drive|lái xe|verb
+Drive|Lái xe|verb
 House|Ngôi nhà|noun
-Apple pine|Quả lê|noun
